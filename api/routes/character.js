@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const { isAuthenticated } = require('../authController');
 
-router.get('/', async (req, res) => {
+router.get('/', isAuthenticated, async (req, res) => {
   try {
     const { page } = req.query;
     const response = await axios.get('https://rickandmortyapi.com/api/character/', {
@@ -16,7 +17,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', isAuthenticated, async (req, res) => {
   try {
     const { id } = req.params;
     const response = await axios.get(`https://rickandmortyapi.com/api/character/${id}`)

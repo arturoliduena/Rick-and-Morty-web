@@ -2,8 +2,6 @@ require('dotenv').config();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { User } = require("./db");
-const jwt = require("jsonwebtoken");
-const { JWT_SECRET_KEY } = process.env;
 
 // Configure the local strategy for use by Passport.
 //
@@ -50,7 +48,11 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findOne({ where: { id } });
-    done(null, user);
+    done(null, {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+    });
   } catch (error) {
     done(null, error);
   }
@@ -69,37 +71,10 @@ function isAuthenticated(req, res, next) {
     message: "Unauthorized",
     error: null,
   }
-  return res.json(data).end()
-}
-
-function authenticateToken(req, res, next) {
-  // Gather the jwt access token from the request header
-  const authHeader = req.headers['authorization']
-  const token = authHeader && authHeader.split(' ')[1];
-  if (token == null) return res.sendStatus(401) // if there isn't any token
-
-  jwt.verify(token, JWT_SECRET_KEY, (err, user) => {
-    if (err) return res.sendStatus(403)
-    req.user = user
-    next() // pass the execution off to whatever request the client intended
-  })
-};
-
-// username is in the form { username: "my cool username" }
-// ^^the above object structure is completely arbitrary
-function generateAccessToken(user) {
-  // expires after half and hour (1800 seconds = 30 minutes)
-  // Create a new token with the username in the payload
-  // and which expires 300 seconds after issue
-  const token = jwt.sign(user, JWT_SECRET_KEY, {
-    expiresIn: '1800s',
-  })
-  return token;
+  return res.status(401).json(data).end()
 }
 
 module.exports = {
-  authenticateToken,
-  generateAccessToken,
   passport,
   isAuthenticated,
 }

@@ -3,8 +3,6 @@ import {
   Route,
   useLocation,
   Switch,
-  useHistory,
-  Redirect,
 } from "react-router-dom";
 import {useSelector } from 'react-redux';
 import { RootState } from '../../store';
@@ -75,7 +73,7 @@ interface Props {
   component: React.FunctionComponent,
   path: string,
 }
-function PrivateRoute({ component, path, ...rest }: Props) {
+function PrivateRoute({ component, path }: Props) {
   const isLogin = useSelector((state: RootState) => state.auth.authorized);
   return (
     <Route path={path} component={isLogin ? component : LoginPage}></Route>

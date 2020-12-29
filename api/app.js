@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var characterRouter = require('./routes/character');
 var episodeRouter = require('./routes/episode');
+var favoriteRouter = require('./routes/favorite');
 var { passport } = require('./authController');
 
 // Create a new Express application.
@@ -39,5 +40,6 @@ app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/character', characterRouter);
 app.use('/episode', episodeRouter);
+app.use('/favorite', favoriteRouter);
 
 module.exports = app;

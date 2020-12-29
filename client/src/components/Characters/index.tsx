@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCharacters } from '../../store/actions/character';
+import { getFavorites, addFavCharacter, RemoveFavCharacter } from '../../store/actions/favorite';
 import { RootState } from '../../store';
 import Card from '../Card';
 import { ICharacter } from '../../types';
@@ -17,7 +18,7 @@ const Status = ({ status }: { status: ICharacter['status']}) => {
     <div className={[styles.status, statusColor].join(' ')}/>
   )
 }
-const buildInfo = ({ name, status, species, origin, episode }: ICharacter) => {
+const BuildInfo = ({ name, status, species, origin, episode }: ICharacter) => {
   return (
     <div className={styles.content}>
       <div className={styles.title}>{name}</div>
@@ -30,43 +31,68 @@ const buildInfo = ({ name, status, species, origin, episode }: ICharacter) => {
   )
 }
 
-const buildExtaInfo = ({ id }: ICharacter) => {
+const BuildExtaInfo = ({ id }: ICharacter, isFav: boolean) => {
+  const dispatch = useDispatch()
+  const addFav = () => {
+    dispatch(addFavCharacter(id));
+  }
+  const removeFav = () => {
+    dispatch(RemoveFavCharacter(id));
+  }
   return (
     <div className={styles.button_group}>
-      <Button text='Add Fav' onClick={() => console.log('click')} />
-      <Button text='Remove Fav' onClick={() => console.log('click')} />
+      {
+        isFav ?
+        <Button text='Remove Fav' onClick={removeFav} /> :
+        <Button text='Add Fav' onClick={addFav} /> 
+      }
     </div>
   )
 }
 
 const Character = ({ character }: PropsCharacter) => {
-  const infoElement = buildInfo(character)
-  const extraInfoElement = buildExtaInfo(character)
-  return <Card image={character.image} infoElement={infoElement} extraInfoElement={extraInfoElement} title='Fav' />
+  const favorites = useSelector((state: RootState) => state.favorite.characters);
+  const isFav = Boolean(favorites.find(f => f.character_id == character.id));
+  const infoElement = BuildInfo(character);
+  const extraInfoElement = BuildExtaInfo(character, isFav);
+  return <Card image={character.image} infoElement={infoElement} extraInfoElement={extraInfoElement} isFav={isFav} />
 };
 
 const Characters = () => {
   const dispatch = useDispatch()
   const characters = useSelector((state: RootState) => state.character.characters);
-  const info = useSelector((state: RootState) => state.character.info);
+  const next = useSelector((state: RootState) => state.character.info.next);
+  const prev = useSelector((state: RootState) => state.character.info.prev);
+  const pages = useSelector((state: RootState) => state.character.info.pages);
   const [page, setPage] = useState(1);
-
   useEffect(() => {
     dispatch(getCharacters(page));
-  }, [page])
+  }, [page]);
 
-  const onPageChange = (nextPage: number) => {
-    if (nextPage && nextPage <= info.pages) {
-      setPage(nextPage);
+  useEffect(() => {
+    dispatch(getFavorites());
+  }, []);
+
+  const onPageChange = (page: string | null = '') => {
+  const nextPage = Number(page && page.replace('https://rickandmortyapi.com/api/character/?page=', ''))
+  if (nextPage && nextPage <= pages) {
+    setPage(nextPage);
     }
   }
 
   return (
+    <>
     <div className={styles.body}>
       {
         characters.map((character: ICharacter) => <Character key={character.id} character={character} />)
       }
     </div>
+    <div className={styles.pages}>
+      <Button text='Prev' onClick={() => onPageChange(prev)} /> 
+      <span className={styles.pagesInfo}> page { page } of { pages } pages </span> 
+      <Button text='Next' onClick={() => onPageChange(next)} />
+    </div>
+    </>
   );
 };
 

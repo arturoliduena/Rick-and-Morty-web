@@ -10,12 +10,18 @@ import {
 
 import { login, logout, register, meAuth } from '../api';
 
+function* handlerError(error: any) {
+  if(error.status == 401){
+    yield put(actions.setAuth(error.data))
+  }
+};
+
 function* fetchLogin(action: any) {
   try {
     const payload = yield call(login, action.user);
     yield put(actions.setAuth(payload.data))
   } catch (e) {
-    console.log(e);
+    yield call(handlerError, e.response);
   }
 }
 
@@ -28,7 +34,7 @@ function* fetchLogout(action: any) {
     const payload = yield call(logout);
     yield put(actions.setAuth(payload.data))
   } catch (e) {
-    console.log(e);
+    yield call(handlerError, e.response);
   }
 }
 
@@ -41,7 +47,7 @@ function* fetchRegister(action: any) {
     const payload = yield call(register, action.user);
     yield put(actions.setAuth(payload.data))
   } catch (e) {
-    console.log(e);
+    yield call(handlerError, e.response);
   }
 }
 
@@ -54,7 +60,7 @@ function* fetchMeAuth(action: any) {
     const payload = yield call(meAuth);
     yield put(actions.setAuth(payload.data))
   } catch (e) {
-    console.log(e);
+    yield call(handlerError, e.response);
   }
 }
 

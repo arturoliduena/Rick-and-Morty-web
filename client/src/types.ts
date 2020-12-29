@@ -48,3 +48,7 @@ export interface IAuth {
   message: string,
   error: any,
 }
+
+export interface IFavorites { 
+  characters : { character_id: number }[]
+}

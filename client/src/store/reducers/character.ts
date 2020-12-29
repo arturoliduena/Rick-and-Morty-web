@@ -1,5 +1,5 @@
 import {
-  CaracterActionTypes,
+  CharacterActionTypes,
   ADD_CHARACTERS,
   GET_CHARACTER,
   ADD_CHARACTER_SELECTED,
@@ -23,7 +23,7 @@ const initialStateCharacter: CharactersState = {
   characterSelected: null,
 };
 
-function character(state: CharactersState = initialStateCharacter, action: CaracterActionTypes): CharactersState {
+function character(state: CharactersState = initialStateCharacter, action: CharacterActionTypes): CharactersState {
   switch (action.type) {
     case ADD_CHARACTERS:
       return {

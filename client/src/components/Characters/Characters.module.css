@@ -4,6 +4,7 @@
   column-gap: 2%;
   row-gap: 20px;
   padding: 10px;
+  min-height: 800px;
 }
 
 .button_group {
@@ -64,6 +65,18 @@
   margin: 0px 4px 0px 0px;
 }
 
+.pages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-blue-sapphire);
+  padding: 10px;
+}
+
+.pagesInfo {
+  color: var(--color-medium-aquamarine);
+  margin: 0px 20px;
+}
 /* On screens that are 992px or less */
 @media screen and (max-width: 992px) {
   .body {
@@ -71,15 +84,15 @@
   }
 }
 
-/* On screens that are 700px or less */
-@media screen and (max-width: 770px) {
+/* On screens that are 820px or less */
+@media screen and (max-width: 820px) {
   .body {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-/* On screens that are 450px or less */
-@media screen and (max-width: 450px) {
+/* On screens that are 550px or less */
+@media screen and (max-width: 550px) {
   .body {
     grid-template-columns: 1fr;
   }

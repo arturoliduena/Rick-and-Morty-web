@@ -4,6 +4,7 @@ import episode from './episode';
 import modal from './modal';
 import card from './card';
 import auth from './auth';
+import favorite from './favorite';
 
 const reducers = combineReducers({
   character,
@@ -11,6 +12,7 @@ const reducers = combineReducers({
   modal,
   card,
   auth,
+  favorite,
 })
 
 export default reducers;

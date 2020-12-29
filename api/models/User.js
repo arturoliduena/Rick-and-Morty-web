@@ -29,18 +29,6 @@ module.exports = (sequelize) => {
         }
       },
     },
-    googleId: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: false,
-      },
-    },
-    githubId: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: false,
-      },
-    },
     password: {
       type: DataTypes.STRING,
       validate: {
