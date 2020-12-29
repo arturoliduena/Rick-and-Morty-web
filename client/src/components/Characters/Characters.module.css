@@ -1,9 +1,67 @@
 .body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 8%;
+  column-gap: 2%;
   row-gap: 20px;
   padding: 10px;
+}
+
+.button_group {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.title {
+  font-size: 22px;
+  margin: 2px 0px;
+  font-weight: bold;
+  line-height: 1.2;
+  color: var(--color-blue-sapphire)
+}
+
+.subtitle {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  margin: 2px 0px;
+  line-height: 1.2;
+  color: var(--color-ink-high-contrast);
+}
+
+.label {
+  font-size: 14px;
+  margin: 2px 0px;
+  line-height: 1.2;
+  font-style: italic;
+  color: var(--color-ink-medium-contrast)
+}
+
+.text {
+  font-size: 16px;
+  margin: 2px 0px;
+  color: var(--color-ink-high-contrast);
+}
+
+.statusColorGreen {
+  background-color: green;
+}
+.statusColorRed {
+  background-color: red;
+}
+.status {
+  width: 9px;
+  height: 9px;
+  border-radius: 9px;
+  display: inline-block;
+  margin: 0px 4px 0px 0px;
 }
 
 /* On screens that are 992px or less */
