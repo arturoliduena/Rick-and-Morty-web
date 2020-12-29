@@ -1,0 +1,28 @@
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 8%;
+  row-gap: 20px;
+  padding: 10px;
+}
+
+/* On screens that are 992px or less */
+@media screen and (max-width: 992px) {
+  .body {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* On screens that are 700px or less */
+@media screen and (max-width: 770px) {
+  .body {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* On screens that are 450px or less */
+@media screen and (max-width: 450px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+}

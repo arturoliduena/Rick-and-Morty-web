@@ -1,0 +1,32 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  position: relative;
+  background-color: var(--color-cadet-blue);
+  border: none;
+  color: #fff;
+  padding: 10px;
+  min-width: 60px;
+  transition-duration: 0.4s;
+  overflow: hidden;
+  box-shadow: 0 5px 15px #193047;
+  border-radius: 10px;
+  outline: 0;
+  margin: 5px;
+}
+
+.button:hover {
+  background: #fff;
+  box-shadow: 4px 5px 6px 0px var(--color-cadet-blue);
+  color: var(--color-blue-sapphire);
+}
+
+.button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}

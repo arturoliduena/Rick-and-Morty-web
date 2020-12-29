@@ -1,0 +1,36 @@
+.header {
+  background-color: var(--color-blue-sapphire);
+  min-height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  padding: 5px 20px;
+}
+
+.logo {
+  width: 400px;
+}
+
+.button_group {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.username {
+  color: var(--color-medium-aquamarine);
+  font-weight: 600;
+  font-size: large;
+  padding: 5px 20px;
+  align-self: center;
+}
+
+/* On screens that are 450px or less */
+@media screen and (max-width: 450px) {
+  .header {
+    flex-direction: column;
+  }
+}
