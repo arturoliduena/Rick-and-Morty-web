@@ -26,10 +26,10 @@ const Dropdown = () => {
       <div className={styles.input_preview}>{location.pathname === '/' ? '/home' : location.pathname }</div>
       <div className={styles.options}>
         <div className={styles.input} onClick={() => handleClick('')}>Home</div>
-        <div className={styles.input} onClick={() => handleClick('about')}>About</div>
         <div className={styles.input} onClick={() => handleClick('characters')}>Characters</div>
         <div className={styles.input} onClick={() => handleClick('locations')}>Locations</div>
         <div className={styles.input} onClick={() => handleClick('episodes')}>Episodes</div>
+        <div className={styles.input} onClick={() => handleClick('about')}>About</div>
       </div>
     </div>
   )

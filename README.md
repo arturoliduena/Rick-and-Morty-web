@@ -72,7 +72,6 @@ The backend was biult made in Express, list of major frameworks and library that
 ![](gif/demo_persist_data.gif)
 
 
-
 ### Testing
 This project has tests on components, reducer, functions/utils and actions, run `yarn test`.
 
@@ -114,11 +113,11 @@ npm install
 
 5. run frontend
 ```sh
-yarn dev
+yarn start
 ```
 or
 ```sh
-npm dev
+npm start
 ```
 
 ### Backend 
@@ -190,9 +189,9 @@ npm install
 
 11. run backend
 ```sh
-yarn start
+yarn dev
 ```
 or
 ```sh
-npm start
+npm dev
 ```

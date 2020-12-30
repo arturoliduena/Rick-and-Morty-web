@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import {useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import Home from '../Home';
+import About from '../About';
 import LoginPage from '../LoginPage';
 import Characters from '../Characters';
 import Character from '../Character';
@@ -25,22 +27,6 @@ const Body = () => {
     </div>
   );
 };
-
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
 
 function Locations() {
   return (
