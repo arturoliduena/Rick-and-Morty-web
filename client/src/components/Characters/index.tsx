@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { getCharacters } from '../../store/actions/character';
 import { getFavorites, addFavCharacter, RemoveFavCharacter } from '../../store/actions/favorite';
 import { RootState } from '../../store';
@@ -18,10 +19,14 @@ const Status = ({ status }: { status: ICharacter['status']}) => {
     <div className={[styles.status, statusColor].join(' ')}/>
   )
 }
-const BuildInfo = ({ name, status, species, origin, episode }: ICharacter) => {
+const BuildInfo = ({ id, name, status, species, origin, episode }: ICharacter) => {
+  let history = useHistory();
+  const onClick = () => {
+    history.push(`/character/${id}`);
+  }
   return (
     <div className={styles.content}>
-      <div className={styles.title}>{name}</div>
+      <div className={styles.title} onClick={onClick}>{name}</div>
       <div className={styles.subtitle}><Status status={status}/>{status} - {species}</div>
       <div className={styles.label}>Origin</div>
       <div className={styles.text}>{origin.name}</div>

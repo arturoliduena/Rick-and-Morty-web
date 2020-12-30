@@ -8,6 +8,7 @@ import {useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import LoginPage from '../LoginPage';
 import Characters from '../Characters';
+import Character from '../Character';
 import styles from './Body.module.css';
 const Body = () => {
   return (
@@ -16,6 +17,7 @@ const Body = () => {
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
         <PrivateRoute path="/characters" component={Characters} />
+        <PrivateRoute path="/character/:id" component={Character} />
         <PrivateRoute path="/locations" component={Locations} />
         <PrivateRoute path="/episodes" component={Episodes} />
         <Route component={NoMatch} />
